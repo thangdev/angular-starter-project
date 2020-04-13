@@ -11,7 +11,7 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./hero-detail.component.css']
 })
 export class HeroDetailComponent implements OnInit {
-  hero: Hero;
+  robot = {}
 
   constructor(
     private route: ActivatedRoute,
@@ -20,13 +20,14 @@ export class HeroDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getHero();
+    this.getRobots();
   }
 
-  getHero(): void {
+
+  getRobots(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.heroService.getHero(id)
-      .subscribe(hero => this.hero = hero);
+    this.heroService.getRobot(id)
+      .subscribe(robotData => this.robot = robotData);
   }
 
   goBack(): void {

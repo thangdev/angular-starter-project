@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 
@@ -9,15 +10,33 @@ import { HeroService } from '../hero.service';
 })
 export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
-
+  mainRobots = []
+  robots = []
+  searchName = ''
   constructor(private heroService: HeroService) { }
 
   ngOnInit() {
-    this.getHeroes();
+    this.getRobots()
   }
 
-  getHeroes(): void {
-    this.heroService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes.slice(1, 5));
+  getRobots(): void {
+    this.heroService.getRobots()
+      .subscribe(robotsData => {
+        this.robots = robotsData
+        this.mainRobots = robotsData
+      })
   }
+
+  search(){
+    const reg = new RegExp(this.searchName, 'g');
+    this.robots = this.robots.filter(bot => reg.test(bot.name))
+    console.log(this.robots)
+  }
+
+  resetSearch(){
+    this.robots = this.mainRobots
+    this.searchName = ''
+  }
+
+
 }

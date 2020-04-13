@@ -1,10 +1,30 @@
-<div *ngIf="hero">
-  <h2>{{hero.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{hero.id}}</div>
+<div *ngIf="robot" style="margin: 0 auto; text-align: center;">
   <div>
-    <label>name:
-      <input [(ngModel)]="hero.name" placeholder="name"/>
+    <img
+      class="single-robot"
+      src="https://robohash.org/{{ robot.name }}?200*200"
+    />
+  </div>
+  <div>
+  <h2>Details info</h2>
+  <div style="margin-right: 150px;">
+    <label>Name:
+      <input disabled [(ngModel)]="robot.name" placeholder="name" />
+    </label>
+     <br>
+    <label>Email:
+      <input disabled [(ngModel)]="robot.email" placeholder="email" />
+    </label>
+     <br>
+    <label>Address:
+      <input disabled [(ngModel)]="robot.address.city" placeholder="city" />
+    </label>
+     <br>
+    <label>Phone:
+      <input disabled [(ngModel)]="robot.phone" placeholder="phone" />
     </label>
   </div>
-  <button (click)="goBack()">go back</button>
+  </div>
+
+  <button (click)="goBack()" style="width: 80px; height: 40px;">go back</button>
 </div>
